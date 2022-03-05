@@ -32,14 +32,8 @@ public class RateModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(
-            name = "rate_sequence",
-            sequenceName = "rate_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "rate_sequence"
+            strategy = GenerationType.IDENTITY
     )
     private Long id;
     @Column(name = "fromcurrency")

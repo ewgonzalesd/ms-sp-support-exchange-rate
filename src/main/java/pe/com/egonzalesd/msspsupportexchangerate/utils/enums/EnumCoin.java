@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum EnumCoin {
     PEN("Nuevo Sol"),
     USD("Dólar estaudinense"),
-    EUR("Euro");
+    EUR("Euro"),
+    JPY("Yen japonés");
     private final String coin;
 }
