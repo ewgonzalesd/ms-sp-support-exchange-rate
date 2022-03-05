@@ -13,5 +13,9 @@ public interface RateRepository extends JpaRepository<RateModel, Long> {
     List<RateModel> findRateModelByFromCurrencyAndDate(String fromCurrency,
                                                        String date);
 
+    List<RateModel> findRateModelByFromCurrencyAndToCurrencyAndDate(String fromCurrency,
+                                                            String toCurrency,
+                                                            String date);
+
 
 }
