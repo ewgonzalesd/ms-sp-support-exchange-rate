@@ -11,7 +11,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:mysql://localhost:3307/reto_db
+    url: jdbc:mysql://127.0.0.1:3307/reto_db?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
     username: root
     password: '123456'
     driverClassName: com.mysql.cj.jdbc.Driver
