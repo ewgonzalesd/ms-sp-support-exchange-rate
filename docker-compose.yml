@@ -1,16 +1,29 @@
-version: '3.8'
+version: '3.6'
 services:
   backend:
     image: ms-sp-support-exchange-rate:latest
     build:
       context: .
-    volumes:
-      - ./docker-files/application.yml:/opt/application.yml
     ports:
-      - "9091:9091"
+      - "9092:9092"
+    env_file: ./.env
     depends_on:
       - db
       - redis
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://db:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useSSL=false",
+        "spring.datasource.username" : "$MYSQLDB_USER",
+        "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+    networks:
+      - testing_net
   db:
     image: mysql:5.7
     restart: unless-stopped
@@ -21,10 +34,14 @@ services:
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
-      - db:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - testing_net
   redis:
     image: redis
     ports:
       - "6379:6379"
 volumes:
   db:
+networks:
+  testing_net:

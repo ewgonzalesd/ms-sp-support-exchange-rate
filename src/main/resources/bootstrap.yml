@@ -8,7 +8,6 @@ spring:
     name: ms-sp-support-exchange-rate-v1
   main:
     allow-bean-definition-overriding: true
-
 info:
   project:
     version: 1.0.0
