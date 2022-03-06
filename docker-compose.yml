@@ -2,6 +2,7 @@ version: '3.6'
 services:
   backend:
     image: ms-sp-support-exchange-rate:latest
+    restart: on-failure
     build:
       context: .
     ports:
