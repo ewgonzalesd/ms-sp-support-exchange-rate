@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "24d6f9c2-5a21-41d1-8402-009d945ce8c7",
+		"name": "RETO_JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/exchange/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiZWdvbnphbGVzZCIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDY1MDQ4OTUsImV4cCI6MTY0NjUwNTQ5NX0.eU8QuFY9n268ZyVgjM9SPsrbfdKZHQubV75eMGAbppLNHoUV1tO4cyYj83QVMpFHWd4Sr1BIWwLRBb57Auw7mQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/rate/?base=USD",
+					"host": [
+						"localhost"
+					],
+					"port": "9092",
+					"path": [
+						"ms-sp-support-exchange-rate",
+						"validar-tipocambio",
+						"v1",
+						"rate",
+						""
+					],
+					"query": [
+						{
+							"key": "base",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/exchange/ Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"USD\",\r\n    \"to\":\"JPY\",\r\n    \"rate\":114.819,\r\n    \"date\":\"2022-03-06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/rate",
+					"host": [
+						"localhost"
+					],
+					"port": "9092",
+					"path": [
+						"ms-sp-support-exchange-rate",
+						"validar-tipocambio",
+						"v1",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/exchange/ Copy 2",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"USD\",\r\n    \"to\":\"JPY\",\r\n    \"rate\":119.819,\r\n    \"date\":\"2022-03-06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/rate",
+					"host": [
+						"localhost"
+					],
+					"port": "9092",
+					"path": [
+						"ms-sp-support-exchange-rate",
+						"validar-tipocambio",
+						"v1",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/exchange/ Copy 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"USD\",\r\n    \"to\":\"JPY\",\r\n    \"rate\":114.819,\r\n    \"date\":\"2022-03-06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/rate",
+					"host": [
+						"localhost"
+					],
+					"port": "9092",
+					"path": [
+						"ms-sp-support-exchange-rate",
+						"validar-tipocambio",
+						"v1",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "egonzalesd",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9092/ms-sp-support-exchange-rate/validar-tipocambio/v1/user",
+					"host": [
+						"localhost"
+					],
+					"port": "9092",
+					"path": [
+						"ms-sp-support-exchange-rate",
+						"validar-tipocambio",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
