@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +27,20 @@ public class RateController {
     private RateService rateService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flowable<RateResponse> rates(@RequestParam(required = false) String base){
-        return rateService.rates(base);
+    public Flowable<RateResponse> rates(@RequestParam(required = false) String base,
+                                        @RequestHeader("Authorization") String authorization){
+        return rateService.rates(base, authorization);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Maybe<Integer> saveRate(@RequestBody RateRequest rateRequest){
-        return rateService.saveRates(rateRequest);
+    public Maybe<Integer> saveRate(@RequestBody RateRequest rateRequest,
+                                   @RequestHeader("Authorization") String authorization){
+        return rateService.saveRates(rateRequest, authorization);
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Maybe<Integer> updateRate(@RequestBody RateRequest rateRequest){
-        return rateService.updateRates(rateRequest);
+    public Maybe<Integer> updateRate(@RequestBody RateRequest rateRequest,
+                                     @RequestHeader("Authorization") String authorization){
+        return rateService.updateRates(rateRequest, authorization);
     }
 }

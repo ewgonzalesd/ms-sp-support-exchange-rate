@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList()));
         claimsMap.put("typeDoc",userModel.getTypeDoc());
         claimsMap.put("numDoc",userModel.getNumDoc());
+        claimsMap.put("username", userModel.getUsername());
 
         String token = Jwts
                 .builder()
