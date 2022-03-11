@@ -90,6 +90,10 @@ public class UserServiceImpl implements UserService {
                 .ifPresent(s -> {
                     if (s && reading){
                         roles.add("ROLE_ADMIN");
+                    } else {
+                        if (s){
+                            roles.add("ROLE_USER");
+                        }
                     }
                 });
 

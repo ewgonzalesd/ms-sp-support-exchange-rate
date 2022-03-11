@@ -18,6 +18,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.GET,"/rate/**").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.POST,"/rate/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/rate/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
     }
 }
