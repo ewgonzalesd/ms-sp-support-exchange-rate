@@ -15,10 +15,12 @@ import pe.com.egonzalesd.msspsupportexchangerate.expose.response.UserResponse;
 import pe.com.egonzalesd.msspsupportexchangerate.model.UserModel;
 import pe.com.egonzalesd.msspsupportexchangerate.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private boolean reading;
+
     @Override
     public Maybe<UserResponse> findUser(String username, String pwd) {
 
@@ -38,6 +43,7 @@ public class UserServiceImpl implements UserService {
                 .map(o -> UserResponse.builder()
                         .username(o.getUsername())
                         .token(generateToken(o))
+                        .roles(generateRoles(o))
                         .build())
                 .switchIfEmpty(Maybe.error(new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR,
                         UUID.randomUUID().toString(),"RETO","Usuario no existe o clave incorrecta")));
@@ -45,8 +51,8 @@ public class UserServiceImpl implements UserService {
 
     private String generateToken(UserModel userModel) {
         String secretKey = "egonzalesd";
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
+        List<GrantedAuthority> grantedAuthorities =  AuthorityUtils
+                .commaSeparatedStringToAuthorityList(generateRoles(userModel).stream().collect(Collectors.joining(",")));
 
         Map<String, Object> claimsMap = new HashMap<>();
         claimsMap.put("authorities",grantedAuthorities.stream()
@@ -67,5 +73,26 @@ public class UserServiceImpl implements UserService {
                         secretKey.getBytes()).compact();
 
         return "Bearer " + token;
+    }
+
+    private List<String> generateRoles(UserModel userModel) {
+        List<String> roles = new ArrayList<>();
+
+        Optional.of(userModel.getReading())
+                .ifPresent(s -> {
+                    if (s){
+                        reading = Boolean.TRUE;
+                        roles.add("ROLE_USER");
+                    }
+                });
+
+        Optional.of(userModel.getWrite())
+                .ifPresent(s -> {
+                    if (s && reading){
+                        roles.add("ROLE_ADMIN");
+                    }
+                });
+
+        return roles;
     }
 }

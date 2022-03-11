@@ -33,4 +33,7 @@ public class UserModel {
     private String numDoc;
     @Column(name = "typedoc")
     private String typeDoc;
+
+    private Boolean reading;
+    private Boolean write;
 }

@@ -16,9 +16,21 @@ CREATE TABLE `user` (
                         `pwd` varchar(100) DEFAULT NULL,
                         `numdoc` int(11) DEFAULT NULL,
                         `typedoc` char(2) DEFAULT NULL,
+                        `reading` tinyint(1) DEFAULT NULL,
+                        `write` tinyint(1) DEFAULT NULL,
                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
+-- reto_db.trace definition
+
+CREATE TABLE `trace` (
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `entity` varchar(100) DEFAULT NULL,
+                         `event` varchar(100) DEFAULT NULL,
+                         `event_user` varchar(100) DEFAULT NULL,
+                         `event_date` datetime DEFAULT NULL,
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16387 DEFAULT CHARSET=latin1;
 
 
 INSERT INTO reto_db.rates (id,fromCurrency,`date`,rate,toCurrency) VALUES
@@ -33,5 +45,5 @@ INSERT INTO reto_db.rates (id,fromCurrency,`date`,rate,toCurrency) VALUES
 (9,'USD',CURRENT_DATE + interval 1 day,114.819000,'JPY');
 
 
-INSERT INTO reto_db.`user` (id,username,pwd,numdoc,typedoc) VALUES
-(1,'egonzalesd','1234567',40000001,'01');
+INSERT INTO reto_db.`user`(id, username, pwd, numdoc, typedoc, reading, `write`) VALUES
+(1, 'egonzalesd', '1234567', 40000001, '01', 1, 1);
