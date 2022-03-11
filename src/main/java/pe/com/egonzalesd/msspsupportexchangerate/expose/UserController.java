@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.com.egonzalesd.msspsupportexchangerate.business.UserService;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", methods = RequestMethod.POST)
 public class UserController {
 
     @Autowired
